@@ -28,13 +28,22 @@ body {
 #controls {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 10px;
+}
+
+#movement-buttons {
+    display: flex;
+    align-items: center;
 }
 
 #up-down-buttons {
     display: flex;
     flex-direction: column;
-    align-items: center;
+}
+
+#start-button {
+    margin-left: 10px;
 }
 
 button {
