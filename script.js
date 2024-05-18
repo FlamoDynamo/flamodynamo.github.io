@@ -3,6 +3,10 @@ const ctx = canvas.getContext('2d');
 const scoreElement = document.getElementById('score');
 const timerElement = document.getElementById('timer');
 const startButton = document.getElementById('start-button');
+const upButton = document.getElementById('up-button');
+const downButton = document.getElementById('down-button');
+const leftButton = document.getElementById('left-button');
+const rightButton = document.getElementById('right-button');
 
 let snake = [
     { x: 160, y: 160 },
@@ -24,6 +28,10 @@ let timeLeft = 60;
 
 document.addEventListener('keydown', changeDirection);
 startButton.addEventListener('click', startGame);
+upButton.addEventListener('click', () => changeDirection({ keyCode: 38 }));
+downButton.addEventListener('click', () => changeDirection({ keyCode: 40 }));
+leftButton.addEventListener('click', () => changeDirection({ keyCode: 37 }));
+rightButton.addEventListener('click', () => changeDirection({ keyCode: 39 }));
 
 function startGame() {
     if (gameActive) return;
