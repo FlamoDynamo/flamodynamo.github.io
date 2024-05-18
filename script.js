@@ -1,6 +1,7 @@
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
 const scoreElement = document.getElementById('score');
+const timerElement = document.getElementById('timer');
 const startButton = document.getElementById('start-button');
 
 let snake = [
@@ -18,6 +19,8 @@ let changingDirection = false;
 let gameActive = false;
 let gameInterval;
 let gameTimeout;
+let countdownInterval;
+let timeLeft = 60;
 
 document.addEventListener('keydown', changeDirection);
 startButton.addEventListener('click', startGame);
@@ -26,6 +29,7 @@ function startGame() {
     if (gameActive) return;
     gameActive = true;
     score = 0;
+    timeLeft = 60;
     snake = [
         { x: 160, y: 160 },
         { x: 140, y: 160 },
@@ -35,15 +39,26 @@ function startGame() {
     dx = 20;
     dy = 0;
     scoreElement.textContent = score;
+    timerElement.textContent = timeLeft;
     createFood();
     gameInterval = setInterval(main, 100);
+    countdownInterval = setInterval(updateTimer, 1000);
     gameTimeout = setTimeout(endGame, 60000); // 60 seconds
 }
 
 function endGame() {
     gameActive = false;
     clearInterval(gameInterval);
+    clearInterval(countdownInterval);
     alert(`Game over! Your score was: ${score}`);
+}
+
+function updateTimer() {
+    timeLeft -= 1;
+    timerElement.textContent = timeLeft;
+    if (timeLeft <= 0) {
+        endGame();
+    }
 }
 
 function main() {
