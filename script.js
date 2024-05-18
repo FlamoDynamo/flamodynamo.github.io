@@ -1,8 +1,10 @@
+document.addEventListener('keydown', handleKeydown);
+
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
 const scoreElement = document.getElementById('score');
 const timerElement = document.getElementById('timer');
-const startButton = document.getElementById('start-button');
+const startButton = document.querySelector('#controls #start-button');
 const upButton = document.getElementById('up-button');
 const downButton = document.getElementById('down-button');
 const leftButton = document.getElementById('left-button');
@@ -26,12 +28,27 @@ let gameTimeout;
 let countdownInterval;
 let timeLeft = 60;
 
-document.addEventListener('keydown', changeDirection);
+const buttons = document.querySelectorAll('#movement-buttons button');
+buttons.forEach(button => {
+    button.addEventListener('click', () => changeDirection({ keyCode: getKeyCodeFromButton(button.id) }));
+});
+
 startButton.addEventListener('click', startGame);
-upButton.addEventListener('click', () => changeDirection({ keyCode: 38 }));
-downButton.addEventListener('click', () => changeDirection({ keyCode: 40 }));
-leftButton.addEventListener('click', () => changeDirection({ keyCode: 37 }));
-rightButton.addEventListener('click', () => changeDirection({ keyCode: 39 }));
+
+function getKeyCodeFromButton(buttonId) {
+    switch (buttonId) {
+        case 'up-button':
+            return 38;
+        case 'down-button':
+            return 40;
+        case 'left-button':
+            return 37;
+        case 'right-button':
+            return 39;
+        default:
+            return null;
+    }
+}
 
 function startGame() {
     if (gameActive) return;
@@ -148,34 +165,43 @@ function changeDirection(event) {
     if (changingDirection) return;
     changingDirection = true;
 
+    const keyCode = event.keyCode || getKeyCodeFromButton(event.target.id);
     const LEFT_KEY = 37;
     const RIGHT_KEY = 39;
     const UP_KEY = 38;
     const DOWN_KEY = 40;
+    const UP_KEYS = [UP_KEY, 87]; // Thêm mã phím 'W'
+    const DOWN_KEYS = [DOWN_KEY, 83]; // Thêm mã phím 'S'
+    const LEFT_KEYS = [LEFT_KEY, 65]; // Thêm mã phím 'A'
+    const RIGHT_KEYS = [RIGHT_KEY, 68]; // Thêm mã phím 'D'
 
-    const keyPressed = event.keyCode;
     const goingUp = dy === -20;
     const goingDown = dy === 20;
     const goingRight = dx === 20;
     const goingLeft = dx === -20;
 
-    if (keyPressed === LEFT_KEY && !goingRight) {
+    if (LEFT_KEYS.includes(keyCode) && !goingRight) {
         dx = -20;
         dy = 0;
     }
 
-    if (keyPressed === UP_KEY && !goingDown) {
+    if (UP_KEYS.includes(keyCode) && !goingDown) {
         dx = 0;
         dy = -20;
     }
 
-    if (keyPressed === RIGHT_KEY && !goingLeft) {
+    if (RIGHT_KEYS.includes(keyCode) && !goingLeft) {
         dx = 20;
         dy = 0;
     }
 
-    if (keyPressed === DOWN_KEY && !goingUp) {
+    if (DOWN_KEYS.includes(keyCode) && !goingUp) {
         dx = 0;
         dy = 20;
     }
+}
+
+function handleKeydown(event) {
+    const keyCode = event.keyCode;
+    changeDirection({ keyCode });
 }
