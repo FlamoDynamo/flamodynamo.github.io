@@ -24,3 +24,22 @@ body {
     background-color: #aad751;
     border: 1px solid #000;
 }
+
+#controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#up-down-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    padding: 10px;
+    font-size: 24px;
+    margin: 5px;
+    cursor: pointer;
+}
