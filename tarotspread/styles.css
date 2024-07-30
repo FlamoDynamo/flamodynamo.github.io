@@ -1,0 +1,146 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9e3b2;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: none;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #5a3e2c; /* Màu chữ tiêu đề */
+}
+
+.spread {
+    position: relative;
+    width: 100%;
+    height: 600px;
+}
+
+.card {
+    position: absolute;
+    border: 1px solid #ddc6b3; /* Màu viền lá bài */
+    border-radius: 10px;
+    background-color: #fff; /* Màu nền lá bài */
+    cursor: pointer;
+    width: 100px;
+    height: 150px;
+    background-size: cover; /* Thêm thuộc tính này */
+    background-position: center; /* Thêm thuộc tính này */
+    transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
+}
+
+.card.selected {
+    border: 2px solid #337ab7; /* Màu viền khi chọn */
+}
+
+.card-selection {
+    display: none;
+    position: fixed; /* Vẫn giữ fixed để hiển thị trên cùng */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-height: 80%; /* Chiều cao tối đa */
+    overflow-y: auto; /* Cho phép cuộn dọc */
+    width: 80%; /* Chiều rộng có thể điều chỉnh */
+    z-index: 1000; /* Đảm bảo hiển thị trên các phần tử khác */
+}
+
+.card-selection h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #5a3e2c; /* Màu chữ tiêu đề trong popup */
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép phân bố các lá bài thành nhiều hàng */
+    justify-content: center; /* Giữa các lá bài */
+}
+
+.cards-container img {
+    width: 100px;
+    height: 150px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Giao diện ảnh 1 */
+.card[data-index="1"] {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.card[data-index="2"] {
+    top: 20%;
+    left: 36%;
+}
+
+.card[data-index="3"] {
+    top: 20%;
+    right: 36%;
+}
+
+.card[data-index="4"] {
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.card[data-index="5"] {
+    top: 24%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 100px;
+}
+
+.card[data-index="6"] {
+    top: 40%;
+    left: 24%;
+}
+
+.card[data-index="7"] {
+    top: 40%;
+    right: 24%;
+}
+
+.card[data-index="8"] {
+    bottom: 20%;
+    left: 36%;
+}
+
+.card[data-index="9"] {
+    bottom: 20%;
+    right: 36%;
+}
+
+.card[data-index="10"] {
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.card[data-index="11"] {
+    bottom: 24%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 100px;
+}
