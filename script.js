@@ -54,7 +54,7 @@ function startGame() {
     if (gameActive) return;
     gameActive = true;
     score = 0;
-    timeLeft = 60;
+    timeLeft = 30;
     snake = [
         { x: 160, y: 160 },
         { x: 140, y: 160 },
