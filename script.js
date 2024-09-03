@@ -26,7 +26,7 @@ let gameActive = false;
 let gameInterval;
 let gameTimeout;
 let countdownInterval;
-let timeLeft = 60;
+let timeLeft = 30;
 
 const buttons = document.querySelectorAll('#movement-buttons button');
 buttons.forEach(button => {
